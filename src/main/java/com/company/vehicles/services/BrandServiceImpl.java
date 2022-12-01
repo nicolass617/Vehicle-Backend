@@ -153,6 +153,7 @@ public class BrandServiceImpl implements IBrandService {
 	}
 
 	@Override
+	@Transactional
 	public ResponseEntity<BrandResponseRest> update(Brand brand, Long id) {
 		
 		BrandResponseRest response = new BrandResponseRest();
@@ -191,6 +192,29 @@ public class BrandServiceImpl implements IBrandService {
 		} catch (Exception e) {
 			
 			response.setMetadata("Respuesta ok", "00", "Error al actualizar la marca");
+			e.getStackTrace();
+			return new ResponseEntity<BrandResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+		
+		return new ResponseEntity<BrandResponseRest>(response, HttpStatus.OK);
+		
+	}
+
+	@Override
+	@Transactional
+	public ResponseEntity<BrandResponseRest> delete(Long id) {
+		
+		BrandResponseRest response = new BrandResponseRest();
+		
+		try {
+			
+			brandDao.deleteById(id);
+			response.setMetadata("Respuesta ok", "00", "Marca eliminada");
+			
+		} catch (Exception e) {
+			
+			response.setMetadata("Respuesta no ok", "-1", "Error al eliminar la marca");
 			e.getStackTrace();
 			return new ResponseEntity<BrandResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			

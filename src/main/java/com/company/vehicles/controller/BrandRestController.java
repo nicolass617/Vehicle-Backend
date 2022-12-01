@@ -3,6 +3,7 @@ package com.company.vehicles.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,14 @@ public class BrandRestController {
 	public ResponseEntity<BrandResponseRest> updateBrand(@RequestBody Brand brand, @PathVariable Long id) {
 		
 		ResponseEntity<BrandResponseRest> response = service.update(brand, id);
+		return response;
+		
+	}
+	
+	@DeleteMapping("/brands/{id}")
+	public ResponseEntity<BrandResponseRest> deleteBrand(@PathVariable Long id) {
+		
+		ResponseEntity<BrandResponseRest> response = service.delete(id);
 		return response;
 		
 	}

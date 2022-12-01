@@ -12,5 +12,6 @@ public interface IBrandService {
 	public ResponseEntity<BrandResponseRest> searchByName(String name);
 	public ResponseEntity<BrandResponseRest> save(Brand brand);
 	public ResponseEntity<BrandResponseRest> update(Brand brand, Long id);
+	public ResponseEntity<BrandResponseRest> delete(Long id);
 	
 }
